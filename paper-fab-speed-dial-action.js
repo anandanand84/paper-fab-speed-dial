@@ -1,8 +1,4 @@
-<link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
-<link rel="import" href="../paper-fab/paper-fab.html">
-
-<!--
+/**
 An action within a material design [Floating Action Button with Speed Dial](https://www.google.com/design/spec/components/buttons-floating-action-button.html#buttons-floating-action-button-transitions)
 
 ### Styling
@@ -21,11 +17,21 @@ Style                                                   | Description
 ```
 
 @demo demo/index.html
--->
-<dom-module id="paper-fab-speed-dial-action">
+*/
+/*
+  FIXME(polymer-modulizer): the above comments were extracted
+  from HTML and may be out of place here. Review them and
+  then delete this comment!
+*/
+import '@polymer/polymer/polymer-legacy.js';
 
-    <template>
+import '@polymer/iron-flex-layout/iron-flex-layout.js';
+import '@polymer/paper-fab/paper-fab.js';
+import { Polymer } from '@polymer/polymer/lib/legacy/polymer-fn.js';
+import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 
+Polymer({
+  _template: html`
         <style>
             :host {
                 @apply --layout-horizontal;
@@ -61,25 +67,15 @@ Style                                                   | Description
                 <slot></slot>
             </span>
         </div>
-        <paper-fab class="fab" icon=[[icon]] mini></paper-fab>
+        <paper-fab class="fab" icon="[[icon]]" mini=""></paper-fab>
+`,
 
-    </template>
-</dom-module>
+  is: 'paper-fab-speed-dial-action',
 
-<script>
-
-    (function () {
-
-        Polymer({
-            is: 'paper-fab-speed-dial-action',
-            properties: {
-                /**
-                 * Icon that is shown next to the content
-                 */
-                icon: String
-            }
-        });
-
-    })();
-
-</script>
+  properties: {
+      /**
+       * Icon that is shown next to the content
+       */
+      icon: String
+  }
+});

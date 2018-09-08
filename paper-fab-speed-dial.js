@@ -1,9 +1,4 @@
-<link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../iron-icons/iron-icons.html">
-<link rel="import" href="../paper-fab/paper-fab.html">
-<link rel="import" href="paper-fab-speed-dial-overlay.html">
-
-<!--
+/**
 A material design [Floating Action Button with Speed Dial](https://www.google.com/design/spec/components/buttons-floating-action-button.html#buttons-floating-action-button-transitions)
 
 ### Styling
@@ -28,11 +23,22 @@ Style                                                   | Description
 ```
 
 @demo demo/index.html
--->
-<dom-module id="paper-fab-speed-dial">
+*/
+/*
+  FIXME(polymer-modulizer): the above comments were extracted
+  from HTML and may be out of place here. Review them and
+  then delete this comment!
+*/
+import '@polymer/polymer/polymer-legacy.js';
 
-    <template>
+import '@polymer/iron-icons/iron-icons.js';
+import '@polymer/paper-fab/paper-fab.js';
+import './paper-fab-speed-dial-overlay.js';
+import { Polymer } from '@polymer/polymer/lib/legacy/polymer-fn.js';
+import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 
+Polymer({
+  _template: html`
         <style>
             .open,
             .overlay {
@@ -58,57 +64,48 @@ Style                                                   | Description
             }
         </style>
 
-        <paper-fab icon="[[icon]]" class="open" on-tap="open" hidden$="[[opened]]" disabled="[[disabled]]"></paper-fab>
+        <paper-fab icon="[[icon]]" class="open" on-tap="open" hidden\$="[[opened]]" disabled="[[disabled]]"></paper-fab>
 
         <paper-fab-speed-dial-overlay id="overlay" class="overlay" opened="{{opened}}" with-backdrop="[[withBackdrop]]">
             <slot></slot>
             <paper-fab icon="close" class="close" on-tap="close"></paper-fab>
         </paper-fab-speed-dial-overlay>
+`,
 
-    </template>
-</dom-module>
+  is: 'paper-fab-speed-dial',
 
-<script>
+  properties: {
+      icon: {
+          type: String,
+          value: 'add'
+      },
+      opened: {
+          type: Boolean,
+          notify: true
+      },
+      disabled: {
+          type: Boolean,
+          value: false
+      },
+      withBackdrop: Boolean,
+  },
 
-    (function () {
+  // Public methods
+  open: function (e) {
+      // Required for mobile Safari to avoid passing the tap event to an element below the FAB
+      if (e) {
+          e.preventDefault();
+      }
 
-        Polymer({
-            is: 'paper-fab-speed-dial',
-            properties: {
-                icon: {
-                    type: String,
-                    value: 'add'
-                },
-                opened: {
-                    type: Boolean,
-                    notify: true
-                },
-                disabled: {
-                    type: Boolean,
-                    value: false
-                },
-                withBackdrop: Boolean,
-            },
+      this.opened = true;
+  },
 
-            // Public methods
-            open: function (e) {
-                // Required for mobile Safari to avoid passing the tap event to an element below the FAB
-                if (e) {
-                    e.preventDefault();
-                }
+  close: function (e) {
+      // Required for mobile Safari to avoid passing the tap event to an element below the FAB
+      if (e) {
+          e.preventDefault();
+      }
 
-                this.opened = true;
-            },
-            close: function (e) {
-                // Required for mobile Safari to avoid passing the tap event to an element below the FAB
-                if (e) {
-                    e.preventDefault();
-                }
-
-                this.opened = false;
-            },
-        });
-
-    })();
-
-</script>
+      this.opened = false;
+  }
+});

@@ -6,12 +6,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
-    <script src="../../web-component-tester/browser.js"></script>
-    <script src="../../test-fixture/test-fixture-mocha.js"></script>
+    <script src="../../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+    <script src="../../../wct-browser-legacy/browser.js"></script>
+    <script src="../../../@polymer/test-fixture/test-fixture-mocha.js"></script>
 
-    <link rel="import" href="../paper-fab-speed-dial.html">
-    <link rel="import" href="../../test-fixture/test-fixture.html">
+    <script type="module" src="../paper-fab-speed-dial.js"></script>
+    <script type="module" src="../../../@polymer/test-fixture/test-fixture.js"></script>
 </head>
 
 <body>
@@ -22,34 +22,36 @@
         </template>
     </test-fixture>
 
-    <script>
-        suite('<paper-fab-speed-dial>', function () {
-            suite('open/close behavior', function () {
-                var element;
+    <script type="module">
+import '../paper-fab-speed-dial.js';
+import '@polymer/test-fixture/test-fixture.js';
+suite('<paper-fab-speed-dial>', function () {
+    suite('open/close behavior', function () {
+        var element;
 
-                setup(function () {
-                    element = fixture('TrivialElement');
-                });
-
-                test('defaults to closed', function () {
-                    expect(element.opened).to.be.eql(false);
-                });
-
-                test('is opened when calling open()', function () {
-                    element.open();
-                    expect(element.opened).to.be.eql(true);
-                });
-
-                test('is opened when calling open()', function () {
-                    element.open();
-                    expect(element.opened).to.be.eql(true); // Check pre-condition
-
-                    element.close();
-                    expect(element.opened).to.be.eql(false);
-                });
-            });
+        setup(function () {
+            element = fixture('TrivialElement');
         });
-    </script>
+
+        test('defaults to closed', function () {
+            expect(element.opened).to.be.eql(false);
+        });
+
+        test('is opened when calling open()', function () {
+            element.open();
+            expect(element.opened).to.be.eql(true);
+        });
+
+        test('is opened when calling open()', function () {
+            element.open();
+            expect(element.opened).to.be.eql(true); // Check pre-condition
+
+            element.close();
+            expect(element.opened).to.be.eql(false);
+        });
+    });
+});
+</script>
 
 </body>
 
