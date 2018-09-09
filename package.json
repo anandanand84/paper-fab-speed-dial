@@ -11,7 +11,7 @@
   ],
   "homepage": "https://github.com/collaborne/paper-fab-speed-dial",
   "name": "@tlab/paper-fab-speed-dial",
-  "version": "",
+  "version": "1.0.0",
   "resolutions": {
     "inherits": "2.0.3",
     "samsam": "1.1.3",
